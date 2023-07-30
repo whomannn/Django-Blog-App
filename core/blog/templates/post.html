@@ -27,6 +27,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/blog">ALL</a></li>
                         {% for cat in category %}
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/blog/category/{{cat.slug}}">{{cat.title}}</a></li>
                         {% endfor %}
@@ -56,12 +57,46 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        {{post.body}}
+                        {{post.body|linebreaks}}
                         </p>
                     </div>
                 </div>
             </div>
         </article>
+        <h2> Comments </h2>
+        <div class="nazarat">
+            <h1><center>نظرات</center></h1>
+            
+            {% for items in comments %}
+                <div class="comments">
+                    <div class="comment-author">
+                        {{items.author}}
+                    </div>
+                    <div class="comment-user_mbti_type">
+                        {{items.user_mbti_type}}
+                    </div>
+                    <div class="comment-body">
+                        {{items.body}}
+                    </div>
+                    <div class="comment-created_date">
+                        {{items.created_date}}
+                    </div>
+                </div>
+            {% endfor %}
+            <h3>نظر دهید</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{comment.content}}
+                <button id="center" type="submit">ثبت نظر</button>
+                {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            </form>
+            
         <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">

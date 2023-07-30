@@ -10796,3 +10796,10 @@ header.masthead .post-heading .meta a {
     font-size: 2.25rem;
   }
 }
+.register-form{
+  text-align: center;
+  margin: 100px;
+}
+.blog-app{
+  color: #000;
+}
