@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<form method="post" enctype="multipart/form-data" class="create-esit-post">  
+	<h1>Create Update Article</h1>
+	{% csrf_token %}  
+	{% if request.user.is_superuser %}	  
+	<label for=" ">Author:</label> {{ form.author}}<br>
+	{% endif %}
+	<div><label for=" ">title:</label>{{ form.title}}  </div>
+	<div><label for=" ">body:</label>{{ form.body}}</div>
+	<div><label for=" ">category:</label>{{ form.category}}</div>
+	<div><label for=" ">slug:</label>{{ form.slug}}</div>
+	<div><label for=" ">background_image:</label>{{ form.background_image}}</div>
+	<button type="submit">Upload</button>  
+</form>  
+{% endblock main %}
+

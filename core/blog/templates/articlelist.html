@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<div class="articlenavbarr">
+    <div class="articles-navbar">
+        <a href="/blog/createpost/ "><h3>Create New Articles</h3></a>
+    </div>
+    <div class="aricles">
+        <h1 style="text-align: center;">Your Articles</h1>
+        {% for article in object_list %}
+        <div class="aricles-item" >
+            <a href="/blog/{{article.slug}}">
+                <div>
+                    <div><h2>{{article.title}}</h2></div>
+                    <div>{{article.body}}</div>
+                </div>
+                <div id="aricles-item"><a style="color: blue;" href="/blog/editpost/{{article.slug}}">Edit</a></div>
+                <div id="aricles-item"><a style="color: red;" href="/blog/deletepost/{{article.slug}}"><form method="POST" action="/blog/deletepost/{{article.slug}}">
+                    {% csrf_token %}<input type="submit" value="DELETE">
+                </form></a></div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main %}

@@ -12,7 +12,7 @@ def loginview(request):
         user = authenticate(request,email=email,password=password)
         if user is not None:
             login(request,user)
-            return render(request,'home.html')
+            return redirect('/blog')
         else:
             context = {
                 "error" : "Invalid email or password."

@@ -23,4 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("blog/",include('blog.url')),
     path("account/",include('accounts.url')),
+    path("account/api/v1/",include('accounts.api.v1.url')),
+    path("blog/api/v1/",include('blog.api.v1.url')),
+    path('api-auth/', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
